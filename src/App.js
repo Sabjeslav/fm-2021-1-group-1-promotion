@@ -1,7 +1,10 @@
 import React from 'react'
-
+import './common/styles/reset.css'
 function App () {
-    return <> </>
+    return (
+        <>
+        </>
+    )
 }
 
 export default App
