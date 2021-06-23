@@ -1,0 +1,68 @@
+@import '../../../common/styles/fonts.sass'
+
+.taskContainer
+  background-color: #fff
+  width: 250px
+  height: 320px
+  border-radius: 15px
+  margin: 10px 0
+  padding: 20px
+  &:nth-child(4n+3)
+    margin-left: 10px
+    margin-right: 20px
+  &:nth-child(4n+2)
+    margin-left: 20px
+    margin-right: 10px
+
+.userBlock
+  display: flex
+
+.userPicture
+  width: 50px
+  height: 50px
+  border-radius: 100px
+  overflow: hidden
+  display: flex
+
+.cardCaption
+  margin-left: 10px
+  font-family: 'San Francisco Pro', sans-serif
+  align-self: center
+  line-height: 25px
+  flex: 1
+
+.userName
+  font-weight: 600
+
+.userAction
+  color: #A6ADB1
+  font-size: 14px
+
+.cardActions
+  width: 18px
+  height: 18px
+  text-align: center
+  padding: 5px
+  &:hover
+    background-color: #e0e0e0
+    border-radius: 50px
+    
+.linkBlock
+  width: 250px
+  height: 180px
+  margin-top: 20px
+  overflow: hidden
+  border-radius: 15px
+
+.taskPerformBtn
+  margin-top: 20px
+  border-radius: 15px
+  padding: 15px 70px
+  border: 2px solid #1750FF
+  font-family: 'San Francisco Pro', sans-serif
+  font-weight: 500
+  cursor: pointer
+  transition: background-color .2s
+  &:hover
+    background-color: #1750FF
+    color: #fff
