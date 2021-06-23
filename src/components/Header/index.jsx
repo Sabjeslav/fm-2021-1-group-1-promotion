@@ -4,6 +4,7 @@ import Logo from './Logo';
 import style from './Header.module.sass';
 import NavMenu from './NavMenu';
 import User from './User';
+
 function Header () {
   return (
     <>
