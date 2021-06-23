@@ -16,6 +16,7 @@
 
 .userBlock
   display: flex
+  position: relative
 
 .userPicture
   width: 50px
@@ -23,6 +24,16 @@
   border-radius: 100px
   overflow: hidden
   display: flex
+
+.actionIcon
+  position: absolute
+  display: flex
+  left: 34px
+  top: 34px
+  padding: 5px
+  background-color: #fff
+  font-size: 10px
+  border-radius: 50px
 
 .cardCaption
   margin-left: 10px
@@ -46,7 +57,7 @@
   &:hover
     background-color: #e0e0e0
     border-radius: 50px
-    
+
 .linkBlock
   width: 250px
   height: 180px

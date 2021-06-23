@@ -2,7 +2,7 @@ import React from 'react';
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
 import style from './TaskItem.module.sass';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisV, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 function TaskItem () {
   return (
@@ -13,6 +13,9 @@ function TaskItem () {
             src='https://mir-s3-cdn-cf.behance.net/user/115/f239ed1843837.5d888ba2db6e5.png'
             alt='User Photo'
           />
+          <div className={style.actionIcon}>
+            <FontAwesomeIcon icon={faHeart} />
+          </div>
         </div>
         <div className={style.cardCaption}>
           <div className={style.userName}>Martin David</div>
@@ -26,13 +29,11 @@ function TaskItem () {
         <LinkPreview
           url='https://dribbble.com/shots/15798306-Fleet-Travel-Shopping-UI-Kit-2'
           descriptionLength='0'
-          imageHeight="180px"
-          borderColor="transparent"
+          imageHeight='180px'
+          borderColor='transparent'
         />
       </div>
-      <div className={style.taskPerformBtn}>
-        Perform a task
-      </div>
+      <div className={style.taskPerformBtn}>Perform a task</div>
     </div>
   );
 }
