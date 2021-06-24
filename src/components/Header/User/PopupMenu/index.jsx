@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import PopupMenuItem from './PopupMenuItem';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,6 +11,7 @@ import Switch from '@material-ui/core/Switch';
 import logOut from './images/logOut.png';
 import style from './PopupMenu.module.sass';
 function PopupMenu () {
+  const menuRef = useRef(null)
   const AntSwitch = withStyles(theme => ({
     root: {
       width: 28,
@@ -52,21 +53,30 @@ function PopupMenu () {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
   const togleActive = () => setIsActive(!isActive);
+  useEffect(() => {
+    const handleClick = ({target}) => {
+      if (isActive && !menuRef.current.contains(target) ) {
+        setIsActive(false);
+      }
+    };
+    window.addEventListener('click', handleClick);
+    return () => window.removeEventListener('click', handleClick);
+  }, [isActive]);
   return (
     <>
-      <div className={style.popupWrapper}>
+      <div ref={menuRef} className={style.popupWrapper}>
         <IconButton aria-label='delete' onClick={togleActive}>
           {isActive ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </IconButton>
         {isActive ? (
           <ul className={style.popupMenuList}>
-            <PopupMenuItem>
+            <PopupMenuItem onClick={togleActive}>
               <Link className={style.popupMenuItem} to='/profile'>
                 <PersonIcon />
                 <p className={style.menuItemText}>My profile</p>
               </Link>
             </PopupMenuItem>
-            <PopupMenuItem>
+            <PopupMenuItem onClick={togleActive}>
               <Link className={style.popupMenuItem} to='/task-history'>
                 <svg
                   width='24'
@@ -104,7 +114,9 @@ function PopupMenu () {
               </Link>
             </PopupMenuItem>
             <div className={style.line}></div>
-            <PopupMenuItem className={style.popupMenuItem}>
+            <PopupMenuItem
+              className={style.popupMenuItem}
+            >
               <WbSunnyIcon />
               <p className={style.menuItemText}>Dark mode</p>
               <Switch
@@ -117,7 +129,10 @@ function PopupMenu () {
               />
             </PopupMenuItem>
             <div className={style.line}></div>
-            <PopupMenuItem className={style.popupMenuItem}>
+            <PopupMenuItem
+              onClick={togleActive}
+              className={style.popupMenuItem}
+            >
               <button className={style.logOut}>
                 <img src={logOut} alt='' />
                 <p className={style.menuItemText}>Log out</p>
