@@ -8,7 +8,8 @@ import {
   faHeart,
   faCommentDots,
   faUserFriends,
-  faEye
+  faEye,
+  faQuestion
 } from '@fortawesome/free-solid-svg-icons';
 
 import { userInitialState, userReducer } from '../../../reducers/index';
@@ -60,8 +61,8 @@ function TaskItem ({ task }) {
         action.style = style.views;
         break;
       default:
-        action.icon = faCommentDots;
-        action.style = style.comment;
+        action.icon = faQuestion;
+        action.style = style.unknown;
         break;
     }
     const iconProps = {
