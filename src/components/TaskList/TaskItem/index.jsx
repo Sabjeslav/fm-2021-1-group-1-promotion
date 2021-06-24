@@ -38,7 +38,6 @@ function TaskItem ({ task }) {
   else if (user.error) return <div>Error</div>;
   else {
     const { data } = user;
-    console.log(task);
     let action = {
       icon: null,
       style: null,
