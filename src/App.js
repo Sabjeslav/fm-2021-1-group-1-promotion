@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { ThemeContext, TasksContext } from './contexts';
-import './common/styles/reset.css';
+
 import Header from './components/Header';
-import './common/styles/fonts.sass';
+import Container from './components/Container';
 import TaskList from './components/TaskList';
 import Footer from './components/Footer';
+import './common/styles/reset.css';
+import './common/styles/fonts.sass';
+
+
+import { ThemeContext, TasksContext } from './contexts';
 
 function App () {
   const [tasks, setTasks] = useState();
@@ -23,9 +27,11 @@ function App () {
       <BrowserRouter>
         <TasksContext.Provider value={{ tasks }}>
           <Header />
-          <Switch>
-            <Route path='/task-list' component={TaskList} />
-          </Switch>
+          <Container>
+            <Switch>
+              <Route path='/task-list' component={TaskList} />
+            </Switch>
+          </Container>
           <Footer />
         </TasksContext.Provider>
       </BrowserRouter>

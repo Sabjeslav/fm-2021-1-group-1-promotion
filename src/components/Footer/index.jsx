@@ -11,15 +11,17 @@ import style from './Footer.module.sass';
 function Footer () {
   return (
     <div className={style.container}>
-      <div className={style.socialBlock}>
-        <FontAwesomeIcon icon={faTwitter} />
-        <FontAwesomeIcon icon={faInstagram} />
-        <FontAwesomeIcon icon={faTelegramPlane} />
+      <div className={style.innerWrapper}>
+        <div className={style.socialBlock}>
+          <FontAwesomeIcon icon={faTwitter} />
+          <FontAwesomeIcon icon={faInstagram} />
+          <FontAwesomeIcon icon={faTelegramPlane} />
+        </div>
+        <div className={style.textBlock}>
+          © {new Date().getFullYear()} - All Rights Reserved
+        </div>
+        <div className={style.textBlock}>For commercial inquiries</div>
       </div>
-      <div className={style.textBlock}>
-        © {new Date().getFullYear()} - All Rights Reserved
-      </div>
-      <div className={style.textBlock}>For commercial inquiries</div>
     </div>
   );
 }
