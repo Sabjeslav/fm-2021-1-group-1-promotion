@@ -5,6 +5,7 @@ import './common/styles/reset.css';
 import Header from './components/Header';
 import './common/styles/fonts.sass';
 import TaskList from './components/TaskList';
+import Footer from './components/Footer';
 
 function App () {
   const [tasks, setTasks] = useState();
@@ -25,6 +26,7 @@ function App () {
           <Switch>
             <Route path='/task-list' component={TaskList} />
           </Switch>
+          <Footer />
         </TasksContext.Provider>
       </BrowserRouter>
     </>

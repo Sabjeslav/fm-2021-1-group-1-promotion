@@ -89,5 +89,18 @@
     "currentExecutions": 350,
     "status": "FINISHED",
     "createdAt": 1624205258753
+  },
+  {
+    "id": 8,
+    "authorId": 2,
+    "postLink": "https://dribbble.com/shots/15798306-Fleet-Travel-Shopping-UI-Kit-2",
+    "socialNetwork": "DRIBBBLE",
+    "taskType": "FOLLOWERS",
+    "isPinned": true,
+    "executionPrice": 45,
+    "targetExecutions": 350,
+    "currentExecutions": 350,
+    "status": "FINISHED",
+    "createdAt": 1624205258753
   }
 ]
