@@ -16,8 +16,12 @@ function TaskList () {
   if (tasks.isFetching) return <div>Loading data</div>;
   else if (tasks.error) return <div>Error</div>;
   else {
-    const pinnedArray = data.filter(item => item.isPinned === true);
-    const unPinnedArray = data.filter(item => item.isPinned === false);
+    const pinnedArray = data.filter(
+      item => item.isPinned === true && item.status !== 'FINISHED'
+    );
+    const unPinnedArray = data.filter(
+      item => item.isPinned === false && item.status !== 'FINISHED'
+    );
     pinnedArray.sort(sortByDate);
     unPinnedArray.sort(sortByDate);
     const tasksArray = array =>
