@@ -13,10 +13,7 @@ import {
 
 function TaskList () {
   const [tasks, tasksDispatch] = useReducer(tasksReducer, tasksInitialState);
-  const [users, usersDispatch] = useReducer(
-    usersListReducer,
-    usersListInitialState
-  );
+
   useEffect(() => {
     tasksDispatch({
       type: actions.REQUEST,
@@ -30,25 +27,13 @@ function TaskList () {
         });
       })
       .catch(error => tasksDispatch({ type: actions.ERROR, error }));
-
-    usersDispatch({
-      type: actions.REQUEST,
-    });
-    fetch('/users.json')
-      .then(res => res.json())
-      .then(data => {
-        usersDispatch({
-          type: actions.SUCCESS,
-          data,
-        });
-      })
-      .catch(error => usersDispatch({ type: actions.ERROR, error }));
   }, []);
 
   if (tasks.isFetching) return <div>Loading data</div>;
   else if (tasks.error) return <div>Error</div>;
   else {
-    const tasksArray = () => tasks.data.map(task => <TaskItem key={task.id} task={task} />);
+    const tasksArray = () =>
+      tasks.data.map(task => <TaskItem key={task.id} task={task} />);
     return (
       <div className={style.outerWrapper}>
         <div className={style.container}>
