@@ -9,7 +9,7 @@ import {
   faCommentDots,
   faUserFriends,
   faEye,
-  faQuestion
+  faQuestion,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { userInitialState, userReducer } from '../../../reducers/index';
