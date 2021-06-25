@@ -1,0 +1,99 @@
+@import '../../common/styles/main'
+@import '../../common/styles/LightTheme'
+@import '../../common/styles/fonts'
+
+.formContainer
+  margin-top: 35px
+
+.selectionBlock
+  flex: 1
+  padding: 10px
+  border-radius: 15px
+  background-color: #fff
+  display: inline-block
+
+.selectionCaption
+  font-family: 'San Francisco Pro'
+  font-size: 14px
+  font-weight: 500
+  color: $taskCreationCaptionColor
+
+.selectionSubcaption
+  font-weight: 400
+  margin-top: 10px
+
+.socialBlock
+  display: flex
+  margin-top: 10px
+  .selectionBlock
+    margin: 0 10px
+    &:first-of-type
+      margin: 0 10px 0 0
+    &:last-of-type
+      margin: 0 0 0 10px
+
+.selectionInnerWrapper
+  display: flex
+  align-items: center
+  position: relative
+
+.selectionType
+  flex-grow: 1
+  margin-left: 10px
+  font-family: 'San Francisco Pro'
+  font-weight: 500
+  user-select: none
+
+.checkBox
+  width: 20px
+  height: 20px
+  position: relative
+  &::before
+    content: ''
+    position: absolute
+    display: block
+    width: 1em
+    height: 1em
+    flex-shrink: 0
+    flex-grow: 0
+    border: 2px solid #8E8E96
+    border-radius: 100%
+    margin-right: 0.5em
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: 70% 70%
+  &:checked
+    &::before
+      background-color: #50D86A
+      border-color: #50D86A
+      background-image: url('../../common/img/check-solid.svg')
+
+.pageSection
+  margin-top: 40px
+  width: 100%
+
+.additionalSettings
+  display: flex
+  justify-content: space-between
+
+.projectLinkBlock
+  display: flex
+  flex-direction: column
+
+.input
+  width: 100%
+  border: none
+  outline: none
+  border-radius: 15px
+  margin-top: 10px
+  padding: 15px 20px
+  font-family: 'San Francisco Pro'
+  font-weight: 500
+  background-color: $createBtnAndInputBgColor
+  color: $createBtnTextColor
+
+.extraBlock
+
+.numInput
+  width: 20%
+

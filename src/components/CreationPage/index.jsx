@@ -1,11 +1,211 @@
-import React from 'react'
+import React from 'react';
+import { Formik, Field, Form } from 'formik';
+import cx from 'classnames';
 
-function CreationPage() {
+import PageHeader from '../PageHeader';
+import SelectIcon from './SelectIcon';
+import coins from '../../common/img/coins.png';
+import style from './CreationPage.module.sass';
+
+function CreationPage () {
   return (
-    <div>
-      
+    <div className={style.container}>
+      <PageHeader text='Task creation' />
+      <div className={style.formContainer}>
+        <Formik
+          initialValues={{
+            socialNetwork: '',
+            taskType: '',
+            projectLink: '',
+            executionCost: 20,
+            executionAmount: 10,
+          }}
+          onSubmit={async values => {
+            alert(JSON.stringify(values));
+          }}
+        >
+          {({ values: networkValues }) => (
+            <Form>
+              <span className={style.selectionCaption}>
+                Select a social network
+              </span>
+              <div
+                className={style.socialBlock}
+                role='group'
+                aria-labelledby='my-radio-group'
+              >
+                <label className={style.selectionBlock}>
+                  <div className={style.selectionInnerWrapper}>
+                    <SelectIcon type='Dribbble' />
+                    <span className={style.selectionType}>Dribbble</span>
+                    <Field
+                      className={style.checkBox}
+                      type='radio'
+                      name='socialNetwork'
+                      value='Dribbble'
+                    />
+                  </div>
+                </label>
+
+                <label className={style.selectionBlock}>
+                  <div className={style.selectionInnerWrapper}>
+                    <SelectIcon type='Behance' />
+                    <span className={style.selectionType}>Behance</span>
+                    <Field
+                      className={style.checkBox}
+                      type='radio'
+                      name='socialNetwork'
+                      value='Behance'
+                    />
+                  </div>
+                </label>
+              </div>
+
+              <div className={style.pageSection}>
+                <span className={style.selectionCaption}>Task type</span>
+                <div
+                  className={style.socialBlock}
+                  role='group'
+                  aria-labelledby='my-radio-group'
+                >
+                  <label className={style.selectionBlock}>
+                    <div className={style.selectionInnerWrapper}>
+                      <SelectIcon type='likes' />
+                      <span className={style.selectionType}>Likes</span>
+                      <Field
+                        className={style.checkBox}
+                        type='radio'
+                        name='taskType'
+                        value='likes'
+                      />
+                    </div>
+                  </label>
+
+                  <label className={style.selectionBlock}>
+                    <div className={style.selectionInnerWrapper}>
+                      <SelectIcon type='followers' />
+                      <span className={style.selectionType}>Followers</span>
+                      <Field
+                        className={style.checkBox}
+                        type='radio'
+                        name='taskType'
+                        value='followers'
+                      />
+                    </div>
+                  </label>
+
+                  <label className={style.selectionBlock}>
+                    <div className={style.selectionInnerWrapper}>
+                      <SelectIcon type='comments' />
+                      <span className={style.selectionType}>Comments</span>
+                      <Field
+                        className={style.checkBox}
+                        type='radio'
+                        name='taskType'
+                        value='comments'
+                      />
+                    </div>
+                  </label>
+
+                  <label className={style.selectionBlock}>
+                    <div className={style.selectionInnerWrapper}>
+                      <SelectIcon type='views' />
+                      <span className={style.selectionType}>Views</span>
+                      <Field
+                        className={style.checkBox}
+                        type='radio'
+                        name='taskType'
+                        value='views'
+                      />
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <div className={style.pageSection}>
+                <div className={style.selectionCaption}>Project link</div>
+                <div
+                  className={cx(
+                    style.selectionCaption,
+                    style.selectionSubcaption
+                  )}
+                >
+                  For example: https://dribbble.com/shots/Example-Name
+                </div>
+                <Field
+                  className={style.input}
+                  placeholder='Write your link here'
+                  name='projectLink'
+                  type='text'
+                />
+              </div>
+
+              <div className={cx(style.pageSection, style.additionalSettings)}>
+                <div className={style.extraBlock}>
+                  <div className={style.selectionCaption}>Execution cost</div>
+                  <div
+                    className={cx(
+                      style.selectionCaption,
+                      style.selectionSubcaption
+                    )}
+                  >
+                    At least 20 coins for execution (50% site comission)
+                  </div>
+                  <Field
+                    className={cx(style.input, style.numInput)}
+                    name='executionCost'
+                    type='number'
+                    min='20'
+                  />
+                </div>
+                <div className={style.extraBlock}>
+                  <div className={style.selectionCaption}>
+                    How much do you need?
+                  </div>
+                  <div
+                    className={cx(
+                      style.selectionCaption,
+                      style.selectionSubcaption
+                    )}
+                  >
+                    At least 10 executions, a maximum of 1000
+                  </div>
+                  <Field
+                    className={cx(style.input, style.numInput)}
+                    name='executionAmount'
+                    type='number'
+                    min='10'
+                    max='1000'
+                  />
+                </div>
+                <div className={style.extraBlock}>
+                  <div className={style.selectionCaption}>
+                    Pin my task to the top
+                  </div>
+                  <div
+                    className={cx(
+                      style.selectionCaption,
+                      style.selectionSubcaption
+                    )}
+                  >
+                    Additional cost is charged - 500 coins
+                  </div>
+                  <Field />
+                </div>
+              </div>
+
+              <div>
+                Picked: {networkValues.socialNetwork}
+                {networkValues.taskType}
+                {networkValues.projectLink}
+              </div>
+              <button type='submit'>Submit</button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
-  )
+  );
 }
 
-export default CreationPage
+export default CreationPage;

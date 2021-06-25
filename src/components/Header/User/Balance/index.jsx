@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './Balance.module.sass';
-import coins from './images/coins.png';
+import coins from '../../../../common/img/coins.png';
 function Balance ({balance}) {
   return (
     <>
