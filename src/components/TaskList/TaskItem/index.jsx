@@ -34,6 +34,10 @@ function TaskItem ({ task }) {
       .catch(error => userDispatch({ type: actions.ERROR, error }));
   }, []);
 
+  const openPostLink = () => {
+    window.open(task.postLink, '_blank').focus();
+  };
+
   if (user.isFetching) return <div>Loading data</div>;
   else if (user.error) return <div>Error</div>;
   else {
@@ -98,7 +102,9 @@ function TaskItem ({ task }) {
             borderColor='transparent'
           />
         </div>
-        <div className={style.taskPerformBtn}>Perform a task</div>
+        <div className={style.taskPerformBtn} onClick={openPostLink}>
+          Perform a task
+        </div>
       </div>
     );
   }
