@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import Logo from './Logo';
 import style from './Header.module.sass';
@@ -9,7 +9,7 @@ function Header () {
   return (
     <>
       <header className={style.header}>
-        <div className={style.container}>
+        <div className={style.headerContainer}>
           <div className={style.headerInner}>
             <Logo />
             <NavMenu />

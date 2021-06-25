@@ -5,10 +5,12 @@ import Header from './components/Header';
 import Container from './components/Container';
 import TaskList from './components/TaskList';
 import Footer from './components/Footer';
+
 import './common/styles/reset.css';
 import './common/styles/fonts.sass';
 
 import { ThemeContext, TasksContext, CurrentUserContext } from './contexts';
+import CreationPage from './components/CreationPage';
 
 function App () {
   const { user, userDispatch } = useUser('/users.json', 2);
@@ -26,6 +28,7 @@ function App () {
                   <Redirect to='/task-list' />{' '}
                 </Route>
                 <Route path='/task-list' component={TaskList} />
+                <Route path='/newtask' component={CreationPage} />
               </Switch>
             </Container>
             <Footer />

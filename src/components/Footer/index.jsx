@@ -10,8 +10,8 @@ import style from './Footer.module.sass';
 
 function Footer () {
   return (
-    <div className={style.container}>
-      <div className={style.innerWrapper}>
+    <div className={style.footerContainer}>
+      <div className={style.container}>
         <div className={style.socialBlock}>
           <FontAwesomeIcon icon={faTwitter} />
           <FontAwesomeIcon icon={faInstagram} />
