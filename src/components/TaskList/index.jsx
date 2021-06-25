@@ -7,8 +7,6 @@ import { actions } from '../../reducers/actions';
 import {
   tasksInitialState,
   tasksReducer,
-  usersListInitialState,
-  usersListReducer,
 } from '../../reducers/index';
 
 function TaskList () {

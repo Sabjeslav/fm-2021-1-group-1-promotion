@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { useUser } from './hooks/index';
+import { useTasks, useUser } from './hooks/index';
 import Header from './components/Header';
 import Container from './components/Container';
 import TaskList from './components/TaskList';
@@ -11,20 +11,13 @@ import './common/styles/fonts.sass';
 import { ThemeContext, TasksContext, CurrentUserContext } from './contexts';
 
 function App () {
-  const { user, userDispatch } = useUser('/users.json');
-  const [tasks, setTasks] = useState();
-  const loadData = () =>
-    fetch('./tasks.json')
-      .then(res => res.json())
-      .then(data => setTasks(data));
-  useEffect(() => {
-    loadData();
-  }, []);
+  const { user, userDispatch } = useUser('/users.json', 2);
+  const { tasks, tasksDispatch } = useTasks('/tasks.json');
   return (
     <>
       <BrowserRouter>
         <CurrentUserContext.Provider value={{ user, userDispatch }}>
-          <TasksContext.Provider value={{ tasks }}>
+          <TasksContext.Provider value={{ tasks, tasksDispatch }}>
             <Header />
             <Container>
               <Switch>
