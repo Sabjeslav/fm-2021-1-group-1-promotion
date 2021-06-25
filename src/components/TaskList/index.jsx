@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import style from './TaskList.module.sass';
 import TaskItem from './TaskItem';
@@ -31,7 +32,9 @@ function TaskList () {
         <div className={style.container}>
           <div className={style.headerContainer}>
             <h1 className={style.taskListCaption}>Task list</h1>
-            <button className={style.createTaskBtn}>+ Create task</button>
+            <NavLink className={style.navLink} to='/newtask'>
+              <button className={style.createTaskBtn}>+ Create task</button>
+            </NavLink>
           </div>
           <div className={style.tasksContainer}>
             {tasksArray(pinnedArray)}
