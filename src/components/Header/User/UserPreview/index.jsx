@@ -1,9 +1,9 @@
 import React from 'react';
 import style from './UserPreview.module.sass';
-import previewPhoto from './images/previewPhoto.png'
+import avatar from '../../../../common/images/avatar.png'
 function UserPreview ({ photo }) {
   const errorHandler = ({ target }) => {
-    target.src = previewPhoto;
+    target.src = avatar;
   };
   return (
     <>

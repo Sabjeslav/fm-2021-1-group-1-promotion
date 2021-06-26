@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { CurrentUserContext } from '../../../contexts';
 import Balance from './Balance';
 import UserPreview from './UserPreview';
-import PopupMenu from './PopupMenu'
+import PopupMenu from './PopupMenu';
 import style from './User.module.sass';
 function User () {
   const {

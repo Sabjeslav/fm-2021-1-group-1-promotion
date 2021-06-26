@@ -11,6 +11,7 @@ import './common/styles/fonts.sass';
 import { TasksContext, CurrentUserContext } from './contexts';
 import TaskListPage from './pages/TaskListPage';
 import CreateTaskPage from './pages/CreateTaskPage';
+import MyProfilePage from './pages/MyProfilePage';
 
 function App () {
   const { user, userDispatch } = useUser('/users.json', 2);
@@ -28,6 +29,7 @@ function App () {
                 </Route>
                 <Route path='/task-list' component={TaskListPage} />
                 <Route path='/newtask' component={CreateTaskPage} />
+                <Route path='/profile' component={MyProfilePage} />
               </Switch>
             </Container>
             <Footer />
