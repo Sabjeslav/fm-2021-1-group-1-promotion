@@ -21,6 +21,7 @@ function CreationPage () {
             executionAmount: 10,
           }}
           onSubmit={async values => {
+            console.log(values)
             alert(JSON.stringify(values));
           }}
         >

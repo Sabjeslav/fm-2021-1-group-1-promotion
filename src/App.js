@@ -1,16 +1,16 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useTasks, useUser } from './hooks/index';
 import Header from './components/Header';
 import Container from './components/Container';
-import TaskList from './components/TaskList';
 import Footer from './components/Footer';
 
 import './common/styles/reset.css';
 import './common/styles/fonts.sass';
 
-import { ThemeContext, TasksContext, CurrentUserContext } from './contexts';
-import CreationPage from './components/CreationPage';
+import { TasksContext, CurrentUserContext } from './contexts';
+import TaskListPage from './pages/TaskListPage';
+import CreateTaskPage from './pages/CreateTaskPage';
 
 function App () {
   const { user, userDispatch } = useUser('/users.json', 2);
@@ -24,11 +24,10 @@ function App () {
             <Container>
               <Switch>
                 <Route exact path='/'>
-                  {' '}
-                  <Redirect to='/task-list' />{' '}
+                  <Redirect to='/task-list' />
                 </Route>
-                <Route path='/task-list' component={TaskList} />
-                <Route path='/newtask' component={CreationPage} />
+                <Route path='/task-list' component={TaskListPage} />
+                <Route path='/newtask' component={CreateTaskPage} />
               </Switch>
             </Container>
             <Footer />
