@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { USER_DATA_SCHEMA } from '../../../utils/validationSchemas';
+import {actions} from '../../../reducers/actions'
 import FormInput from './FormInput';
 import style from './UserData.module.sass';
-function UserData ({ data }) {
+import { UsersListContext } from '../../../contexts';
+function UserData ({ data, userDispatch }) {
   const { dribbbleLink, behanceLink, email } = data;
   const initialValues = {
     dribble: dribbbleLink,
@@ -13,9 +15,28 @@ function UserData ({ data }) {
     newPassword: '',
     confirmPassword: '',
   };
+  const { users, usersDispatch } = useContext(UsersListContext);
+  const submitHandler = (values, actions) => {
+    usersDispatch({
+      type: "update",
+      payload: {
+        id: data.id,
+        dribbbleLink: values.dribble,
+        behanceLink: values.behance,
+        email: values.email,
+      },
+    });
+    console.log(users.data)
+    actions.setSubmitting(false);
+    actions.resetForm();
+  };
   return (
     <>
-      <Formik initialValues={initialValues} validationSchema={USER_DATA_SCHEMA}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={submitHandler}
+        validationSchema={USER_DATA_SCHEMA}
+      >
         {formikProps => {
           return (
             <Form className={style.form}>
@@ -77,7 +98,7 @@ function UserData ({ data }) {
                 <p className={style.labelText}>New password</p>
                 <div className={style.fieldWrapper}>
                   <Field
-                    type='text'
+                    type='password'
                     component={FormInput}
                     name='newPassword'
                     placeholder='New password'
@@ -90,7 +111,7 @@ function UserData ({ data }) {
                 <p className={style.labelText}>Confirm password</p>
                 <div className={style.fieldWrapper}>
                   <Field
-                    type='text'
+                    type='password'
                     component={FormInput}
                     name='confirmPassword'
                     placeholder='Confirm password'
@@ -98,7 +119,11 @@ function UserData ({ data }) {
                 </div>
                 <ErrorMessage name='confirmPassword' component='span' />
               </label>
-              <Field type='submit' className={style.submitBtn} value='Save changes' />
+              <Field
+                type='submit'
+                className={style.submitBtn}
+                value='Save changes'
+              />
             </Form>
           );
         }}

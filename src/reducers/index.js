@@ -67,6 +67,14 @@ export const usersListReducer = (state, action) => {
       };
     case actions.ERROR:
       return { ...state, isFetching: false, error: action.error };
+    case "update": {
+      const { id, dribbbleLink, behanceLink, email } = action.payload;
+      return state.data.map(user =>{
+        return id === user.id ? { ...user, dribbbleLink, behanceLink, email } : user
+      }
+      );
+      
+    }
     default:
       throw new Error();
   }

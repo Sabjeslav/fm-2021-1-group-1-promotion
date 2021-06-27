@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import { CurrentUserContext } from '../../contexts';
 import PageHeader from '../PageHeader';
 import style from './MyProfile.module.sass';
@@ -31,7 +31,7 @@ function MyProfile () {
                 <Socials socials={connectedSocials} />
               </div>
               <div className={style.secondColumn}>
-                <UserData data={data} />
+                <UserData data={data} userDispatch={userDispatch} />
               </div>
               <div className={style.thirdColumn}>
                 <Statistic data={data} />

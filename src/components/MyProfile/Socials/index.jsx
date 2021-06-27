@@ -12,7 +12,6 @@ function Socials ({ socials }) {
     }
     return userLinks.map((linkName, id) => {
       const url = new URL(links[linkName]);
-      console.log(url);
       return (
         <div key={id} className={style.socialLinkWrapper}>
           <a href={url} className={style.socialLink}>

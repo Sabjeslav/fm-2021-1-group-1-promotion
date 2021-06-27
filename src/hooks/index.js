@@ -2,6 +2,8 @@ import { useEffect, useReducer } from 'react';
 import {
   userReducer,
   userInitialState,
+  usersListReducer,
+  usersListInitialState,
   tasksInitialState,
   tasksReducer,
 } from '../reducers/index';
@@ -24,6 +26,25 @@ export function useUser (src, userId) {
       .catch(error => userDispatch({ type: actions.ERROR, error }));
   }, []);
   return { user, userDispatch };
+}
+
+export function useUsers (src) {
+  const [users, usersDispatch] = useReducer(usersListReducer, usersListInitialState);
+  useEffect(() => {
+    usersDispatch({
+      type: actions.REQUEST,
+    });
+    fetch(src)
+      .then(res => res.json())
+      .then(data => {
+        usersDispatch({
+          type: actions.SUCCESS,
+          data,
+        });
+      })
+      .catch(error => usersDispatch({ type: actions.ERROR, error }));
+  }, []);
+  return { users, usersDispatch };
 }
 
 export function useTasks (src) {

@@ -18,7 +18,7 @@ export const PASSWORD_SCHEMA = yup
   );
 export const PASSWORD_CONFIRM_SCHEMA = yup
   .string()
-  .oneOf([yup.ref('password'), null], 'Passwords must match');
+  .oneOf([yup.ref('password')], 'Passwords must match');
 
 export const USER_DATA_SCHEMA = yup.object({
   dribble: URL_SCHEMA,
