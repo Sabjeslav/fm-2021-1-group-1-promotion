@@ -3,6 +3,7 @@ import { CurrentUserContext } from '../../contexts';
 import PageHeader from '../PageHeader';
 import style from './MyProfile.module.sass';
 import Socials from './Socials';
+import Statistic from './Statistic';
 import UserData from './UserData';
 import UserPhoto from './UserPhoto';
 function MyProfile () {
@@ -31,6 +32,9 @@ function MyProfile () {
               </div>
               <div className={style.secondColumn}>
                 <UserData data={data} />
+              </div>
+              <div className={style.thirdColumn}>
+                <Statistic data={data} />
               </div>
             </div>
           </div>
