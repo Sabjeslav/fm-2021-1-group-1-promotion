@@ -1,0 +1,33 @@
+@import '../../common/styles/LightTheme'
+@import '../../common/styles/main'
+
+.header
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.taskListCaption
+  font-family: 'San Francisco Pro', sans-serif
+  font-size: 26px
+  font-weight: 600
+
+.createTaskBtn
+  width: 132px
+  height: 50px
+  color: $createBtnTextColor
+  background-color: $createBtnAndInputBgColor
+  border: none
+  border-radius: 15px
+  font-weight: 600
+  transition: background-color .2s
+  &:hover
+    background-color: $createBtnAndInputBgHoverColor
+  
+.navLink
+  text-decoration: none
+  color: inherit
+
+.tasksContainer
+  display: flex
+  flex-flow: row wrap
+  margin-top: 30px

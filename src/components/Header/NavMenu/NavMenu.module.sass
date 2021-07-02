@@ -1,0 +1,25 @@
+@import '../../../common/styles/LightTheme'
+
+.navMenu
+  display: flex
+  align-items: center
+
+.navLink
+  display: flex
+  align-items: center
+  text-decoration: none
+  font-size: 18px
+  color: $navLinkColor
+  &> *
+    fill: $navLinkColor
+
+  &:focus
+    outline: none
+  &+&
+    margin-left: 20px
+.activeNavLink
+  color: $textColor
+  &> *
+    fill: $textColor
+.navMenuItemText
+  margin-left: 5px
