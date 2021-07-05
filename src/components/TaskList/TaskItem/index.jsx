@@ -1,6 +1,6 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useContext} from 'react';
 import { LinkPreview } from '@dhaiwat10/react-link-preview';
-
+import { UsersListContext } from 'contexts';
 import style from './TaskItem.module.sass';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,36 +12,17 @@ import {
   faQuestion,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { userInitialState, userReducer } from '../../../reducers/index';
-import { actions } from '../../../reducers/actions';
-
 function TaskItem ({ task }) {
-  const [user, userDispatch] = useReducer(userReducer, userInitialState);
+  const {
+    users: {
+      data,
+    },
+  } = useContext(UsersListContext);
   const { authorId } = task;
-  useEffect(() => {
-    userDispatch({
-      type: actions.REQUEST,
-    });
-    fetch('/users.json')
-      .then(res => res.json())
-      .then(data => {
-        const author = data.filter(item => item.id === authorId);
-        userDispatch({
-          type: actions.SUCCESS,
-          data: author[0],
-        });
-      })
-      .catch(error => userDispatch({ type: actions.ERROR, error }));
-  }, []);
 
   const openPostLink = () => {
     window.open(task.postLink, '_blank').focus();
   };
-
-  if (user.isFetching) return <div>Loading data</div>;
-  else if (user.error) return <div>Error</div>;
-  else {
-    const { data } = user;
     let action = {
       icon: null,
       style: null,
@@ -76,7 +57,7 @@ function TaskItem ({ task }) {
       <div className={style.taskContainer}>
         <div className={style.userBlock}>
           <div className={style.userPicture}>
-            <img src={data.photo} alt='User Photo' />
+            <img src={data[authorId].photo} alt='User Photo' />
             <div className={style.actionIcon}>
               <FontAwesomeIcon
                 className={iconProps.className}
@@ -108,6 +89,6 @@ function TaskItem ({ task }) {
       </div>
     );
   }
-}
+
 
 export default TaskItem;
