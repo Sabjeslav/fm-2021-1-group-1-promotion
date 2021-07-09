@@ -70,7 +70,7 @@ function PopupMenu () {
   return (
     <>
       <div ref={menuRef} className={style.popupWrapper}>
-        <IconButton aria-label='delete' onClick={togleActive}>
+        <IconButton className={style.popupButton} aria-label='delete' onClick={togleActive}>
           {isActive ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </IconButton>
         {isActive ? (

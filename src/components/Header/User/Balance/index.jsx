@@ -1,12 +1,14 @@
 import React from 'react';
 import style from './Balance.module.sass';
-import coins from '../../../../common/img/coins.png';
-function Balance ({balance}) {
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoins } from '@fortawesome/free-solid-svg-icons';
+
+function Balance ({ balance }) {
   return (
     <>
       <div className={style.balanceWrapper}>
         <button className={style.addCoins}>+</button>
-        <img src={coins} alt='' className={style.coins} />
+        <FontAwesomeIcon className={style.coins} icon={faCoins} />
         <span className={style.balance}>{balance}</span>
       </div>
     </>
