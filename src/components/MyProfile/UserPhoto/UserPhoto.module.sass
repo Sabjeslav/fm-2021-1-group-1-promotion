@@ -1,15 +1,15 @@
 @import '../../../common/styles/fonts'
-@import '../../../common/styles/LightTheme'
 .photoWrapper
   max-width: 250px
   max-height: 360px
   padding: 20px
   border-radius: 15px
-  background-color: $backgroundColor
+  background-color: var(--backgroundColor)
 
 .photo
   width: 100%
   height: 100%
+  border-radius: 15px
 
 .newPhotoBtn
   width: 100%
@@ -19,6 +19,7 @@
   font-weight: 500
   padding: 10px 0
   background-color: inherit
-  border: 2px solid $createBtnAndInputBgColor
+  color: var(--textColor)
+  border: 2px solid var(--createBtnAndInputBgColor)
   border-radius: 15px
   margin-top: 20px

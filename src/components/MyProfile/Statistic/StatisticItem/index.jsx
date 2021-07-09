@@ -5,7 +5,9 @@ function StatisticItem({itemData, description,itemIcon,id}) {
   return (
     <>
     <div className={style.item}>
+      <div className={style.iconWrapper}>
       <FontAwesomeIcon  className={style.icon} icon={itemIcon} id={style[id]} />
+      </div>
       <div className={style.information}>
         <h3 className={style.title}>
           {itemData}

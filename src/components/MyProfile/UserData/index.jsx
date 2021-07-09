@@ -80,7 +80,7 @@ function UserData ({ data, userDispatch }) {
                 </div>
                 <ErrorMessage name='email' component='span' />
               </label>
-              <p className={style.text}>Password menagement</p>
+              <p className={style.text}>Password management</p>
               <label className={style.label}>
                 <p className={style.labelText}>Primary password</p>
                 <div className={style.fieldWrapper}>

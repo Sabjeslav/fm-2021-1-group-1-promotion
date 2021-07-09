@@ -1,36 +1,44 @@
-@import '../../../../common/styles/LightTheme'
-
 .item
   box-sizing: border-box
   padding: 10px 25px 10px 10px
   border-radius: 15px
   display: flex
   align-items: center
-  background-color: $backgroundColor
+  background-color: var(--backgroundColor)
   &+&
     margin-top: 15px
 
 .information
   margin-left: 10px
 
+.iconWrapper
+  display: flex
+  justify-content: center
+  align-items: center
+
 .icon
-  width: 24px !important
+  width: 20px !important
+  height: 20px !important
   padding: 13px
-  border-radius: 15px
+  border-radius: 12px
 
 .title
   font-size: 24px
   font-weight: 500
+  color: var(--textColor)
+
+.description
+  color: var(--taskCreationCaptionColor)
 
 #likes
-  background-color: #FFCECE
-  color: #E24444
+  background-color: var(--likeBgColor)
+  color: var(--likeColor)
 #newUsers
-  background-color: #F1DEFF
-  color: #A86CE4
+  background-color: var(--followerBgColor)
+  color: var(--followerColor)
 #days
-  background-color: #DEFFE5
-  color: #50D86A
+  background-color: var(--commentBgColor)
+  color: var(--commentColor)
 #money
-  background-color: #FFF6DE
-  color: #FFA10B
+  background-color: var(--viewsBgColor)
+  color: var(--viewsColor)
