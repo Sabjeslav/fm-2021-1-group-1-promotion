@@ -2,7 +2,7 @@
 @import '../../../common/styles/LightTheme'
 
 .taskContainer
-  background-color: #fff
+  background-color: var(--taskContainerColor)
   width: 250px
   height: 320px
   border-radius: 15px
@@ -26,15 +26,15 @@
   overflow: hidden
   display: flex
   .like
-    color: $likeColor
+    color: var(--likeColor)
   .comment
-    color: $commentColor
+    color: var(--commentColor)
   .follower
-    color: $followerColor
+    color: var(--followerColor)
   .views
-    color: $viewsColor
+    color: var(--viewsColor)
   .unknown
-    color: $unknownColor
+    color: var(--unknownColor)
 
 .actionIcon
   position: absolute
@@ -42,7 +42,7 @@
   left: 34px
   top: 34px
   padding: 5px
-  background-color: #fff
+  background-color: var(--taskContainerColor)
   font-size: 10px
   border-radius: 50px
 
@@ -55,11 +55,13 @@
 
 .userName
   font-weight: 600
+  color: var(--textColor)
 
 .userAction
-  color: $navLinkColor
+  color: var(--navLinkColor)
   font-size: 14px
   text-transform: capitalize
+  font-weight: 500
 
 .cardActions
   width: 18px
@@ -68,8 +70,9 @@
   padding: 5px
   align-items: center
   justify-content: center
+  color: var(--cardActionsColor)
   &:hover
-    background-color: $createBtnAndInputBgHoverColor
+    background-color: var(--createBtnAndInputBgHoverColor)
     border-radius: 50px
 
 .linkBlock
@@ -83,11 +86,12 @@
   margin-top: 20px
   border-radius: 15px
   padding: 15px 70px
-  border: 2px solid $blueColor
+  border: 2px solid var(--performTaskColor)
   font-family: 'San Francisco Pro', sans-serif
   font-weight: 500
   cursor: pointer
   transition: background-color .2s
+  color: var(--textColor)
   &:hover
-    background-color: $blueColor
+    background-color: var(--performTaskColor)
     color: #fff
