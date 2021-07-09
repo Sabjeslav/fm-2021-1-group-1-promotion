@@ -10,8 +10,18 @@ import PersonIcon from '@material-ui/icons/Person';
 import Switch from '@material-ui/core/Switch';
 import logOut from './images/logOut.png';
 import style from './PopupMenu.module.sass';
+import useTheme from 'hooks/useTheme';
+import { CONSTANTS } from '../../../../constants/index';
+import cx from 'classnames';
+
 function PopupMenu () {
-  const menuRef = useRef(null)
+  const root = document.querySelector('#root');
+  const themeState = useTheme();
+  root.className = cx({
+    ['lightTheme']: themeState.theme === CONSTANTS.THEMES.LIGHT,
+    ['darkTheme']: themeState.theme === CONSTANTS.THEMES.DARK,
+  });
+  const menuRef = useRef(null);
   const AntSwitch = withStyles(theme => ({
     root: {
       width: 28,
@@ -45,17 +55,12 @@ function PopupMenu () {
     checked: {},
   }))(Switch);
 
-  const [state, setState] = useState({
-    isChecked: false,
-  });
   const [isActive, setIsActive] = useState(false);
-  const handleChange = event => {
-    setState({ ...state, [event.target.name]: event.target.checked });
-  };
+  const handleChange = () => themeState.toggleTheme();
   const togleActive = () => setIsActive(!isActive);
   useEffect(() => {
-    const handleClick = ({target}) => {
-      if (isActive && !menuRef.current.contains(target) ) {
+    const handleClick = ({ target }) => {
+      if (isActive && !menuRef.current.contains(target)) {
         setIsActive(false);
       }
     };
@@ -114,14 +119,12 @@ function PopupMenu () {
               </Link>
             </PopupMenuItem>
             <div className={style.line}></div>
-            <PopupMenuItem
-              className={style.popupMenuItem}
-            >
+            <PopupMenuItem className={style.popupMenuItem}>
               <WbSunnyIcon />
               <p className={style.menuItemText}>Dark mode</p>
               <Switch
                 className={style.switch}
-                checked={state.isChecked}
+                checked={themeState.theme === CONSTANTS.THEMES.DARK}
                 onChange={handleChange}
                 color='primary'
                 name='isChecked'

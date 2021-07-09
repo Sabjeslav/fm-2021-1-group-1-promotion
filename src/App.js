@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useReducerLoader } from './hooks/index';
 import Header from './components/Header';
 import Container from './components/Container';
 import Footer from './components/Footer';
 import { usersListReducer, userReducer, tasksReducer } from 'reducers';
+import cx from 'classnames';
+
 import './common/styles/reset.css';
 import './common/styles/fonts.sass';
+import './App.sass';
 
-import { TasksContext, CurrentUserContext, UsersListContext } from './contexts';
+import {
+  TasksContext,
+  CurrentUserContext,
+  UsersListContext,
+} from './contexts';
 import TaskListPage from './pages/TaskListPage';
 import CreateTaskPage from './pages/CreateTaskPage';
 import MyProfilePage from './pages/MyProfilePage';
+import useTheme from 'hooks/useTheme';
+import { CONSTANTS } from './constants/index';
 
 function App () {
   const [user, userDispatch] = useReducerLoader(userReducer, {
@@ -43,6 +52,7 @@ function App () {
                 </Switch>
               </Container>
               <Footer />
+              {/* </div> */}
             </TasksContext.Provider>
           </CurrentUserContext.Provider>
         </UsersListContext.Provider>

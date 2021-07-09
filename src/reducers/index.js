@@ -1,4 +1,7 @@
 import { actions } from './actions';
+import { CONSTANTS } from '../constants/index';
+
+const { THEMES, DEFAULT_THEME } = CONSTANTS;
 
 export const userInitialState = {
   isFetching: false,
@@ -23,7 +26,7 @@ export const userReducer = (state, action) => {
       const currentUser = data.find(user => user.id === userId);
       return { ...state, data: currentUser, isFetching: false };
     }
-    
+
     case actions.ERROR: {
       return { ...state, isFetching: false, error: action.error };
     }
@@ -46,11 +49,7 @@ export const tasksReducer = (state, action) => {
 
     case actions.SUCCESS: {
       const { data } = action;
-      return {
-        ...state,
-        data,
-        isFetching: false,
-      };
+      return { ...state, data, isFetching: false };
     }
 
     case actions.ERROR: {
@@ -70,16 +69,15 @@ export const usersListInitialState = {
 export const usersListReducer = (state, action) => {
   switch (action.type) {
     case actions.REQUEST:
-      return { ...tasksInitialState, isFetching: true };
+      return { ...usersListInitialState, isFetching: true };
+
     case actions.SUCCESS:
       const { data } = action;
-      return {
-        ...state,
-        data,
-        isFetching: false,
-      };
+      return { ...state, data, isFetching: false };
+
     case actions.ERROR:
       return { ...state, isFetching: false, error: action.error };
+
     case 'update': {
       const { id, dribbbleLink, behanceLink, email } = action.payload;
       return state.data.map(user => {
@@ -90,5 +88,29 @@ export const usersListReducer = (state, action) => {
     }
     default:
       throw new Error();
+  }
+};
+
+const themeInitialState = {
+  theme: DEFAULT_THEME,
+};
+
+export const themeReducer = (state, action) => {
+  switch (action.type) {
+    case actions.TOGGLE_THEME: {
+      localStorage.setItem(
+        'theme',
+        state.theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK
+      );
+      return {
+        theme: state.theme === THEMES.DARK ? THEMES.LIGHT : THEMES.DARK,
+      };
+    }
+    case actions.RESET_THEME: {
+      return { ...themeInitialState };
+    }
+    default: {
+      throw new Error();
+    }
   }
 };
