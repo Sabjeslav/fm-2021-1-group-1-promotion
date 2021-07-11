@@ -19,9 +19,10 @@ function CreationPage () {
             projectLink: '',
             executionCost: 20,
             executionAmount: 10,
+            isPinned: false,
           }}
           onSubmit={async values => {
-            console.log(values)
+            console.log(values);
             alert(JSON.stringify(values));
           }}
         >
@@ -191,7 +192,14 @@ function CreationPage () {
                   >
                     Additional cost is charged - 500 coins
                   </div>
-                  <Field />
+
+                  <label className={style.checkboxWrapper}>
+                    <Field
+                      className={style.pinToTopCheckBox}
+                      name='isPinned'
+                      type='checkBox'
+                    />
+                  </label>
                 </div>
               </div>
 

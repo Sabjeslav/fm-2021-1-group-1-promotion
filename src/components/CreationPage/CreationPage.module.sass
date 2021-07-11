@@ -45,10 +45,10 @@
   color: var(--textColor)
 
 .checkBox
-  width: 20px
-  height: 20px
+  width: 10px
+  height: 10px
   position: relative
-  background-color: var(--taskContainerColor)
+  border: none
   &::before
     content: ''
     position: absolute
@@ -64,6 +64,7 @@
     background-position: center center
     background-size: 70% 70%
     background-color: var(--taskContainerColor)
+    transform: translateY(-5px) translateX(-8px)
   &:checked
     &::before
       background-color: #50D86A
@@ -99,3 +100,41 @@
 .numInput
   width: 20%
 
+.checkboxWrapper
+  display: flex
+  justify-content: center
+  align-items: center
+  background-color: var(--createBtnAndInputBgColor)
+  display: inline-block
+  padding: 15px 20px
+  margin-top: 10px
+  border-radius: 15px
+  cursor: pointer
+
+.pinToTopCheckBox
+  width: 10px
+  height: 10px
+  position: relative
+  border: none
+  outline: none
+  &::before
+    content: ''
+    position: absolute
+    display: block
+    width: 1em
+    height: 1em
+    flex-shrink: 0
+    flex-grow: 0
+    border: 2px solid #8E8E96
+    border-radius: 100%
+    margin-right: 0.5em
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: 70% 70%
+    background-color: var(--taskContainerColor)
+    transform: translateY(-5px) translateX(-5px)
+  &:checked
+    &::before
+      background-color: #50D86A
+      border-color: #50D86A
+      background-image: url('../../common/img/check-solid.svg')
