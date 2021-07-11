@@ -1,5 +1,4 @@
 @import '../../common/styles/main'
-@import '../../common/styles/LightTheme'
 @import '../../common/styles/fonts'
 
 .formContainer
@@ -9,14 +8,14 @@
   flex: 1
   padding: 10px
   border-radius: 15px
-  background-color: #fff
+  background-color: var(--taskContainerColor)
   display: inline-block
 
 .selectionCaption
   font-family: 'San Francisco Pro'
   font-size: 14px
   font-weight: 500
-  color: $taskCreationCaptionColor
+  color: var(--taskCreationCaptionColor)
 
 .selectionSubcaption
   font-weight: 400
@@ -43,11 +42,13 @@
   font-family: 'San Francisco Pro'
   font-weight: 500
   user-select: none
+  color: var(--textColor)
 
 .checkBox
   width: 20px
   height: 20px
   position: relative
+  background-color: var(--taskContainerColor)
   &::before
     content: ''
     position: absolute
@@ -62,6 +63,7 @@
     background-repeat: no-repeat
     background-position: center center
     background-size: 70% 70%
+    background-color: var(--taskContainerColor)
   &:checked
     &::before
       background-color: #50D86A
@@ -89,8 +91,8 @@
   padding: 15px 20px
   font-family: 'San Francisco Pro'
   font-weight: 500
-  background-color: $createBtnAndInputBgColor
-  color: $createBtnTextColor
+  background-color: var(--createBtnAndInputBgColor)
+  color: var(--createBtnTextColor)
 
 .extraBlock
 
