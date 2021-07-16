@@ -135,7 +135,7 @@ function CreationPage () {
                   For example: https://dribbble.com/shots/Example-Name
                 </div>
                 <Field
-                  className={style.input}
+                  className={cx(style.input, style.linkInput)}
                   placeholder='Write your link here'
                   name='projectLink'
                   type='text'
@@ -153,12 +153,14 @@ function CreationPage () {
                   >
                     At least 20 coins for execution (50% site comission)
                   </div>
-                  <Field
-                    className={cx(style.input, style.numInput)}
-                    name='executionCost'
-                    type='number'
-                    min='20'
-                  />
+                  <div className={style.input}>
+                    <Field
+                      className={style.numInput}
+                      name='executionCost'
+                      type='number'
+                      min='20'
+                    />
+                  </div>
                 </div>
                 <div className={style.extraBlock}>
                   <div className={style.selectionCaption}>
@@ -172,13 +174,15 @@ function CreationPage () {
                   >
                     At least 10 executions, a maximum of 1000
                   </div>
-                  <Field
-                    className={cx(style.input, style.numInput)}
-                    name='executionAmount'
-                    type='number'
-                    min='10'
-                    max='1000'
-                  />
+                  <div className={style.input}>
+                    <Field
+                      className={style.numInput}
+                      name='executionAmount'
+                      type='number'
+                      min='10'
+                      max='1000'
+                    />
+                  </div>
                 </div>
                 <div className={style.extraBlock}>
                   <div className={style.selectionCaption}>
@@ -195,7 +199,7 @@ function CreationPage () {
 
                   <label className={style.checkboxWrapper}>
                     <Field
-                      className={style.pinToTopCheckBox}
+                      className={cx(style.checkBox, style.pinToTopCheckBox)}
                       name='isPinned'
                       type='checkBox'
                     />
@@ -203,7 +207,7 @@ function CreationPage () {
                 </div>
               </div>
 
-              <div>
+              <div style={{"color": "var(--textColor)"}}>
                 Picked: {networkValues.socialNetwork}
                 {networkValues.taskType}
                 {networkValues.projectLink}
