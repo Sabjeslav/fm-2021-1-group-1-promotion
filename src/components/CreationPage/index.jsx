@@ -1,6 +1,8 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 import cx from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoins, faBolt } from '@fortawesome/free-solid-svg-icons';
 
 import PageHeader from '../PageHeader';
 import SelectIcon from './SelectIcon';
@@ -154,12 +156,15 @@ function CreationPage () {
                     At least 20 coins for execution (50% site comission)
                   </div>
                   <div className={style.input}>
-                    <Field
-                      className={style.numInput}
-                      name='executionCost'
-                      type='number'
-                      min='20'
-                    />
+                    <div className={style.inputInnerWrapper}>
+                      <FontAwesomeIcon icon={faCoins} />
+                      <Field
+                        className={style.numInput}
+                        name='executionCost'
+                        type='number'
+                        min='20'
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className={style.extraBlock}>
@@ -175,13 +180,16 @@ function CreationPage () {
                     At least 10 executions, a maximum of 1000
                   </div>
                   <div className={style.input}>
-                    <Field
-                      className={style.numInput}
-                      name='executionAmount'
-                      type='number'
-                      min='10'
-                      max='1000'
-                    />
+                    <div className={style.inputInnerWrapper}>
+                      <FontAwesomeIcon icon={faBolt} />
+                      <Field
+                        className={style.numInput}
+                        name='executionAmount'
+                        type='number'
+                        min='10'
+                        max='1000'
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className={style.extraBlock}>
@@ -206,13 +214,7 @@ function CreationPage () {
                   </label>
                 </div>
               </div>
-
-              <div style={{"color": "var(--textColor)"}}>
-                Picked: {networkValues.socialNetwork}
-                {networkValues.taskType}
-                {networkValues.projectLink}
-              </div>
-              <button type='submit'>Submit</button>
+              <button className={style.submitBtn} type='submit'>Create task</button>
             </Form>
           )}
         </Formik>

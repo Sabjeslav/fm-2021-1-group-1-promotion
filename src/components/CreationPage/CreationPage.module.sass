@@ -5,6 +5,16 @@
   margin-top: 35px
   width: 100%
 
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button
+  -webkit-appearance: none
+  margin: 0
+
+/* Firefox */
+input[type=number]
+  -moz-appearance: textfield
+
 .selectionBlock
   flex: 1
   padding: 10px
@@ -98,27 +108,53 @@
   background-color: var(--createBtnAndInputBgColor)
   color: var(--textColor)
 
+.inputInnerWrapper
+  display: flex
+  justify-content: space-between
+  align-items: center
+
 .linkInput
   width: 100%
   box-sizing: border-box
 
 .numInput
-  width: 100%
+  width: 40px
   border: none
   outline: none
   color: var(--createBtnTextColor)
   background-color: var(--createBtnAndInputBgColor)
+  text-align: center
+  font-family: 'San Francisco Pro', sans-serif
+  font-weight: 500
+  margin-left: 8px
+  &:focus
+    text-decoration: underline
 
 .checkboxWrapper
-  display: flex
   justify-content: center
   align-items: center
   background-color: var(--createBtnAndInputBgColor)
   display: inline-block
-  padding: 15px 20px
+  padding: 18px 21px
   margin-top: 10px
   border-radius: 15px
   cursor: pointer
 
 .pinToTopCheckBox
   transform: translateX(3px)
+
+.submitBtn
+  margin-top: 40px
+  background-color: var(--mainPageBG)
+  border: 2px solid var(--performTaskColor)
+  outline: none
+  border-radius: 15px
+  padding: 15px 20px
+  font-weight: 500
+  font-family: 'San Francisco Pro', sans-serif
+  transition: background-color .2s
+  cursor: pointer
+  color: var(--textColor)
+  &:hover
+    background-color: var(--performTaskColor)
+    color: #fff
