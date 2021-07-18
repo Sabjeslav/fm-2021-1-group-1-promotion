@@ -28,3 +28,20 @@ export const USER_DATA_SCHEMA = yup.object({
   newPassword: PASSWORD_SCHEMA,
   confirmPassword: PASSWORD_CONFIRM_SCHEMA,
 });
+
+export const NEW_TASK_SCHEMA = yup.object({
+  socialNetwork: yup.string().required('Select a social network'),
+  taskType: yup.string().required('Select task type'),
+  postLink: yup.string().required('Link is required field'),
+  executionPrice: yup
+    .number()
+    .min(20, 'Select at least 20 coins for execution')
+    .max(1000, '1000 is a maximum execution cost')
+    .required('Enter execution cost'),
+  targetExecutions: yup
+    .number()
+    .min(10, 'Select at least 10 executions')
+    .max(1000, '1000 is a maximum executions')
+    .required('Enter executions amount'),
+  isPinned: yup.boolean(),
+});

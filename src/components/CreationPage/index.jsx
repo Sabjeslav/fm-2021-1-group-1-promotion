@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Formik, Field, Form } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoins, faBolt } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +8,7 @@ import PageHeader from '../PageHeader';
 import SelectIcon from './SelectIcon';
 import style from './CreationPage.module.sass';
 import { TasksContext, CurrentUserContext } from 'contexts';
+import { NEW_TASK_SCHEMA } from '../../utils/validationSchemas';
 
 function CreationPage () {
   const {
@@ -32,6 +33,7 @@ function CreationPage () {
             targetExecutions: 10,
             isPinned: false,
           }}
+          validationSchema={NEW_TASK_SCHEMA}
           onSubmit={async (values, actions) => {
             const coinsAmount =
               values.executionPrice * values.targetExecutions +
@@ -252,10 +254,41 @@ function CreationPage () {
                   </label>
                 </div>
               </div>
-              <button className={style.submitBtn} type='submit'>
-                Create task
-              </button>
-              <div className={style.errorBlock}>{balanceError}</div>
+              <div className={style.bottomSection}>
+                <button className={style.submitBtn} type='submit'>
+                  Create task
+                </button>
+                <div className={style.errorsWrapper}>
+                  <ErrorMessage
+                    component='div'
+                    className={style.errorBlock}
+                    name='socialNetwork'
+                  />
+                  <ErrorMessage
+                    component='div'
+                    className={style.errorBlock}
+                    name='taskType'
+                  />
+                  <ErrorMessage
+                    component='div'
+                    className={style.errorBlock}
+                    name='postLink'
+                  />
+                  <ErrorMessage
+                    component='div'
+                    className={style.errorBlock}
+                    name='executionPrice'
+                  />
+                  <ErrorMessage
+                    component='div'
+                    className={style.errorBlock}
+                    name='targetExecutions'
+                  />
+                  <div className={cx(style.errorBlock, style.balanceError)}>
+                    {balanceError}
+                  </div>
+                </div>
+              </div>
             </Form>
           )}
         </Formik>
