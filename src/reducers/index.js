@@ -27,6 +27,14 @@ export const userReducer = (state, action) => {
       return { ...state, data: currentUser, isFetching: false };
     }
 
+    case actions.USER_UPDATE: {
+      const { coinsAmount } = action.payLoad;
+      const { data } = state;
+      const newBalance = data.balance - coinsAmount;
+      const updatedUser = { ...data, balance: newBalance };
+      return { ...state, data: updatedUser, isFetching: false };
+    }
+
     case actions.ERROR: {
       return { ...state, isFetching: false, error: action.error };
     }
@@ -52,11 +60,10 @@ export const tasksReducer = (state, action) => {
       return { ...state, data, isFetching: false };
     }
 
-    case actions.UPDATE: {
+    case actions.TASKS_UPDATE: {
       const newData = action.payLoad;
-      const currentData = state.data;
       const newTask = {
-        id: currentData.length,
+        id: state.data.length,
         ...newData,
       };
       state.data.push(newTask);

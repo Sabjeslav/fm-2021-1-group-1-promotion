@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,7 +8,6 @@ import PageHeader from '../PageHeader';
 import SelectIcon from './SelectIcon';
 import style from './CreationPage.module.sass';
 import { TasksContext, CurrentUserContext } from 'contexts';
-import { actions } from 'reducers/actions';
 
 function CreationPage () {
   const {
@@ -16,7 +15,9 @@ function CreationPage () {
     tasksDispatch,
   } = useContext(TasksContext);
 
-  const { user } = useContext(CurrentUserContext);
+  const { user, userDispatch } = useContext(CurrentUserContext);
+
+  const [balanceError, setBalanceError] = useState(null);
 
   return (
     <div className={style.container}>
@@ -32,8 +33,16 @@ function CreationPage () {
             isPinned: false,
           }}
           onSubmit={async (values, actions) => {
+            const coinsAmount =
+              values.executionPrice * values.targetExecutions +
+              values.isPinned * 500;
+            if (user.data.balance < coinsAmount) {
+              setBalanceError('Not enough coins to create a task');
+              throw new Error('Not enough coins to create a task');
+            }
+            console.log(coinsAmount);
             tasksDispatch({
-              type: 'DATA_UPDATE',
+              type: 'DATA_TASKS_UPDATE',
               payLoad: {
                 authorId: user.data.id,
                 createdAt: Date.now(),
@@ -47,6 +56,13 @@ function CreationPage () {
                 isPinned: values.isPinned,
               },
             });
+            userDispatch({
+              type: 'DATA_USER_UPDATE',
+              payLoad: {
+                coinsAmount,
+              },
+            });
+            setBalanceError(null);
             actions.resetForm();
           }}
         >
@@ -239,6 +255,7 @@ function CreationPage () {
               <button className={style.submitBtn} type='submit'>
                 Create task
               </button>
+              <div className={style.errorBlock}>{balanceError}</div>
             </Form>
           )}
         </Formik>
