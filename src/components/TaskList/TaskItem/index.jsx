@@ -20,8 +20,6 @@ function TaskItem ({ task }) {
   const postAuthor = data.filter(user => {
     if (user.id === authorId) return user;
   });
-  console.log(task);
-  console.log(data);
   const openPostLink = () => {
     window.open(task.postLink, '_blank').focus();
   };

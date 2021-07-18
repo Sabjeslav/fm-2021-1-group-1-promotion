@@ -26,7 +26,6 @@ function UserData ({ data, userDispatch }) {
         email: values.email,
       },
     });
-    console.log(users.data)
     actions.setSubmitting(false);
     actions.resetForm();
   };

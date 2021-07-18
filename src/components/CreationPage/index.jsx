@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Field, Form } from 'formik';
 import cx from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,10 +6,18 @@ import { faCoins, faBolt } from '@fortawesome/free-solid-svg-icons';
 
 import PageHeader from '../PageHeader';
 import SelectIcon from './SelectIcon';
-import coins from '../../common/img/coins.png';
 import style from './CreationPage.module.sass';
+import { TasksContext, CurrentUserContext } from 'contexts';
+import { actions } from 'reducers/actions';
 
 function CreationPage () {
+  const {
+    tasks: { data },
+    tasksDispatch,
+  } = useContext(TasksContext);
+
+  const { user } = useContext(CurrentUserContext);
+
   return (
     <div className={style.container}>
       <PageHeader text='Task creation' />
@@ -18,14 +26,28 @@ function CreationPage () {
           initialValues={{
             socialNetwork: '',
             taskType: '',
-            projectLink: '',
-            executionCost: 20,
-            executionAmount: 10,
+            postLink: '',
+            executionPrice: 20,
+            targetExecutions: 10,
             isPinned: false,
           }}
-          onSubmit={async values => {
-            console.log(values);
-            alert(JSON.stringify(values));
+          onSubmit={async (values, actions) => {
+            tasksDispatch({
+              type: 'DATA_UPDATE',
+              payLoad: {
+                authorId: user.data.id,
+                createdAt: Date.now(),
+                status: 'ACTIVE',
+                currentExecutions: 0,
+                socialNetwork: values.socialNetwork,
+                taskType: values.taskType,
+                postLink: values.postLink,
+                executionPrice: values.executionPrice,
+                targetExecutions: values.targetExecutions,
+                isPinned: values.isPinned,
+              },
+            });
+            actions.resetForm();
           }}
         >
           {({ values: networkValues }) => (
@@ -46,7 +68,7 @@ function CreationPage () {
                       className={style.checkBox}
                       type='radio'
                       name='socialNetwork'
-                      value='Dribbble'
+                      value='DRIBBBLE'
                     />
                   </div>
                 </label>
@@ -59,7 +81,7 @@ function CreationPage () {
                       className={style.checkBox}
                       type='radio'
                       name='socialNetwork'
-                      value='Behance'
+                      value='BEHANCE'
                     />
                   </div>
                 </label>
@@ -80,7 +102,7 @@ function CreationPage () {
                         className={style.checkBox}
                         type='radio'
                         name='taskType'
-                        value='likes'
+                        value='LIKES'
                       />
                     </div>
                   </label>
@@ -93,7 +115,7 @@ function CreationPage () {
                         className={style.checkBox}
                         type='radio'
                         name='taskType'
-                        value='followers'
+                        value='FOLLOWERS'
                       />
                     </div>
                   </label>
@@ -106,7 +128,7 @@ function CreationPage () {
                         className={style.checkBox}
                         type='radio'
                         name='taskType'
-                        value='comments'
+                        value='COMMENTS'
                       />
                     </div>
                   </label>
@@ -119,7 +141,7 @@ function CreationPage () {
                         className={style.checkBox}
                         type='radio'
                         name='taskType'
-                        value='views'
+                        value='VIEWS'
                       />
                     </div>
                   </label>
@@ -139,7 +161,7 @@ function CreationPage () {
                 <Field
                   className={cx(style.input, style.linkInput)}
                   placeholder='Write your link here'
-                  name='projectLink'
+                  name='postLink'
                   type='text'
                 />
               </div>
@@ -160,7 +182,7 @@ function CreationPage () {
                       <FontAwesomeIcon icon={faCoins} />
                       <Field
                         className={style.numInput}
-                        name='executionCost'
+                        name='executionPrice'
                         type='number'
                         min='20'
                       />
@@ -184,7 +206,7 @@ function CreationPage () {
                       <FontAwesomeIcon icon={faBolt} />
                       <Field
                         className={style.numInput}
-                        name='executionAmount'
+                        name='targetExecutions'
                         type='number'
                         min='10'
                         max='1000'
@@ -214,7 +236,9 @@ function CreationPage () {
                   </label>
                 </div>
               </div>
-              <button className={style.submitBtn} type='submit'>Create task</button>
+              <button className={style.submitBtn} type='submit'>
+                Create task
+              </button>
             </Form>
           )}
         </Formik>

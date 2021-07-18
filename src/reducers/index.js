@@ -52,9 +52,20 @@ export const tasksReducer = (state, action) => {
       return { ...state, data, isFetching: false };
     }
 
+    case actions.UPDATE: {
+      const newData = action.payLoad;
+      const currentData = state.data;
+      const newTask = {
+        id: currentData.length,
+        ...newData,
+      };
+      state.data.push(newTask);
+    }
+
     case actions.ERROR: {
       return { ...state, isFetching: false, error: action.error };
     }
+
     default:
       throw new Error();
   }
