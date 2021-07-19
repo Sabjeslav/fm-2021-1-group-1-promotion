@@ -10,14 +10,11 @@ import './common/styles/reset.css';
 import './common/styles/fonts.sass';
 import './App.sass';
 
-import {
-  TasksContext,
-  CurrentUserContext,
-  UsersListContext,
-} from './contexts';
+import { TasksContext, CurrentUserContext, UsersListContext } from './contexts';
 import TaskListPage from './pages/TaskListPage';
 import CreateTaskPage from './pages/CreateTaskPage';
 import MyProfilePage from './pages/MyProfilePage';
+import TaskHistory from 'components/TaskHistory';
 
 function App () {
   const [user, userDispatch] = useReducerLoader(userReducer, {
@@ -46,10 +43,10 @@ function App () {
                   <Route path='/task-list' component={TaskListPage} />
                   <Route path='/newtask' component={CreateTaskPage} />
                   <Route path='/profile' component={MyProfilePage} />
+                  <Route path='/task-history' component={TaskHistory} />
                 </Switch>
               </Container>
               <Footer />
-              {/* </div> */}
             </TasksContext.Provider>
           </CurrentUserContext.Provider>
         </UsersListContext.Provider>

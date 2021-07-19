@@ -11,10 +11,7 @@ import { TasksContext, CurrentUserContext } from 'contexts';
 import { NEW_TASK_SCHEMA } from '../../utils/validationSchemas';
 
 function CreationPage () {
-  const {
-    tasks: { data },
-    tasksDispatch,
-  } = useContext(TasksContext);
+  const { tasksDispatch } = useContext(TasksContext);
 
   const { user, userDispatch } = useContext(CurrentUserContext);
 
