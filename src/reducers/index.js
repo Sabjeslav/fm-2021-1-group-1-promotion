@@ -60,13 +60,26 @@ export const tasksReducer = (state, action) => {
       return { ...state, data, isFetching: false };
     }
 
-    case actions.TASKS_UPDATE: {
+    case actions.NEW_TASK: {
       const newData = action.payLoad;
       const newTask = {
-        id: state.data.length,
+        id: state.data.length + 1,
         ...newData,
       };
       state.data.push(newTask);
+    }
+
+    case actions.TASK_UPDATE: {
+      const { id } = action.payLoad;
+      const taskToUpdate = { ...state.data.find(item => item.id === id) };
+      if (taskToUpdate.status === 'ACTIVE') {
+        taskToUpdate.status = 'PAUSED';
+      } else {
+        taskToUpdate.status = 'ACTIVE';
+      }
+      const data = [...state.data];
+      data[id - 1] = { ...taskToUpdate };
+      return { ...state, data, isFetching: false };
     }
 
     case actions.ERROR: {

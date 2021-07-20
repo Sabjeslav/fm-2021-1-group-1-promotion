@@ -5,17 +5,6 @@ import style from './UserTaskList.module.sass';
 import { CurrentUserContext, TasksContext } from 'contexts';
 
 function UserTaskList () {
-  const testObj = {
-    status: 'active',
-    network: 'behance',
-    taskType: 'likes',
-    progress: {
-      current: 230,
-      target: 400,
-    },
-    coins: 10,
-  };
-
   const {
     user: {
       data: { id },
@@ -23,7 +12,17 @@ function UserTaskList () {
   } = useContext(CurrentUserContext);
   const {
     tasks: { data },
+    tasksDispatch,
   } = useContext(TasksContext);
+
+  const toggleStatus = (taskId) => {
+    tasksDispatch({
+      type: 'DATA_TASK_UPDATE',
+      payLoad: {
+        id: taskId
+      }
+    })
+  }
 
   const compareByCreationDate = (a, b) => {
     if (a.createdAt > b.createdAt) {
@@ -42,10 +41,7 @@ function UserTaskList () {
   };
 
   const currentUserTasks = data.filter(item => item.authorId === id);
-  currentUserTasks.sort(compareByCreationDate);
-  currentUserTasks.sort(sortByStatus);
-
-  console.log(currentUserTasks);
+  currentUserTasks.sort(compareByCreationDate).sort(sortByStatus);
   return (
     <div className={style.container}>
       <div className={style.listHeader}>
@@ -56,7 +52,7 @@ function UserTaskList () {
         <div className={style.coins}>Coins</div>
       </div>
       {currentUserTasks.map((task, index) => {
-        return <TaskItem data={task} key={index} />;
+        return <TaskItem data={task} toggleStatus={toggleStatus} key={index} />;
       })}
     </div>
   );

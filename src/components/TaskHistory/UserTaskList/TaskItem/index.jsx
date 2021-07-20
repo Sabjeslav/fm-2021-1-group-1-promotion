@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,13 +11,29 @@ import SelectIcon from 'components/CreationPage/SelectIcon';
 
 import style from './TaskItem.module.sass';
 
-function TaskItem ({ data }) {
+function TaskItem ({ data, toggleStatus }) {
+  const statusBtnHandler = () => {
+    toggleStatus(data.id);
+  };
+  console.log('id', data.id);
   const renderStatusBtn = status => {
     switch (status) {
       case 'ACTIVE':
-        return <FontAwesomeIcon icon={faPlayCircle} />;
+        return (
+          <FontAwesomeIcon
+            icon={faPlayCircle}
+            className={style.unfinishedBtn}
+            onClick={statusBtnHandler}
+          />
+        );
       case 'PAUSED':
-        return <FontAwesomeIcon icon={faPauseCircle} />;
+        return (
+          <FontAwesomeIcon
+            icon={faPauseCircle}
+            className={style.unfinishedBtn}
+            onClick={statusBtnHandler}
+          />
+        );
       case 'FINISHED':
         return (
           <FontAwesomeIcon icon={faPlayCircle} className={style.finishedBtn} />
@@ -48,7 +64,7 @@ function TaskItem ({ data }) {
 
   return (
     <div className={style.taskContainer}>
-      <div className={style.playBtn}>{renderStatusBtn(data.status)}</div>
+      <div className={style.statusBtn}>{renderStatusBtn(data.status)}</div>
       <div className={style.networkWrapper}>
         <SelectIcon type={data.socialNetwork} />
         <div className={style.iconLabel}>

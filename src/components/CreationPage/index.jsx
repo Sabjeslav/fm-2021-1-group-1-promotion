@@ -39,9 +39,8 @@ function CreationPage () {
               setBalanceError('Not enough coins to create a task');
               throw new Error('Not enough coins to create a task');
             }
-            console.log(coinsAmount);
             tasksDispatch({
-              type: 'DATA_TASKS_UPDATE',
+              type: 'DATA_NEW_TASK',
               payLoad: {
                 authorId: user.data.id,
                 createdAt: Date.now(),
