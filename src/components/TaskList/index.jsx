@@ -16,17 +16,18 @@ function TaskList () {
   const sortByDate = (a, b) => {
     return a.createdAt - b.createdAt;
   };
+  const sortByIsPinned = (a, b) => {
+    if (a.isPinned && !b.isPinned) return -1;
+    if (!a.isPinned && b.isPinned) return 1;
+    return 0;
+  };
   if (tasks.isFetching) return <div>Loading data</div>;
   else if (tasks.error) return <div>Error</div>;
   else {
-    const pinnedArray = data.filter(
-      item => item.isPinned === true && item.status !== 'FINISHED'
-    );
-    const unPinnedArray = data.filter(
-      item => item.isPinned === false && item.status !== 'FINISHED'
-    );
-    pinnedArray.sort(sortByDate);
-    unPinnedArray.sort(sortByDate);
+    const tasks = data.filter(item => {
+      return item.status === 'ACTIVE';
+    });
+    tasks.sort(sortByDate).sort(sortByIsPinned);
     const tasksArray = array =>
       array.map(task => <TaskItem key={task.id} task={task} />);
     return (
@@ -37,10 +38,7 @@ function TaskList () {
             <button className={style.createTaskBtn}>+ Create task</button>
           </NavLink>
         </div>
-        <div className={style.tasksContainer}>
-          {tasksArray(pinnedArray)}
-          {tasksArray(unPinnedArray)}
-        </div>
+        <div className={style.tasksContainer}>{tasksArray(tasks)}</div>
       </div>
     );
   }
