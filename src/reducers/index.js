@@ -82,6 +82,11 @@ export const tasksReducer = (state, action) => {
       return { ...state, data, isFetching: false };
     }
 
+    case actions.TASK_DELETE: {
+      const { id } = action.payLoad;
+      state.data = state.data.filter(item => item.id !== id);
+    }
+
     case actions.ERROR: {
       return { ...state, isFetching: false, error: action.error };
     }

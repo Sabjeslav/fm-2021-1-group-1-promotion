@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import TaskItem from './TaskItem';
 import style from './UserTaskList.module.sass';
 import { CurrentUserContext, TasksContext } from 'contexts';
+import { actions } from 'reducers/actions';
 
 function UserTaskList () {
   const {
@@ -15,14 +16,23 @@ function UserTaskList () {
     tasksDispatch,
   } = useContext(TasksContext);
 
-  const toggleStatus = (taskId) => {
+  const toggleStatus = taskId => {
     tasksDispatch({
-      type: 'DATA_TASK_UPDATE',
+      type: actions.TASK_UPDATE,
       payLoad: {
-        id: taskId
-      }
-    })
-  }
+        id: taskId,
+      },
+    });
+  };
+
+  const deleteTask = taskId => {
+    tasksDispatch({
+      type: actions.TASK_DELETE,
+      payLoad: {
+        id: taskId,
+      },
+    });
+  };
 
   const compareByCreationDate = (a, b) => {
     if (a.createdAt > b.createdAt) {
@@ -52,7 +62,14 @@ function UserTaskList () {
         <div className={style.coins}>Coins</div>
       </div>
       {currentUserTasks.map((task, index) => {
-        return <TaskItem data={task} toggleStatus={toggleStatus} key={index} />;
+        return (
+          <TaskItem
+            data={task}
+            toggleStatus={toggleStatus}
+            deleteTask={deleteTask}
+            key={index}
+          />
+        );
       })}
     </div>
   );

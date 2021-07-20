@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -11,11 +11,13 @@ import SelectIcon from 'components/CreationPage/SelectIcon';
 
 import style from './TaskItem.module.sass';
 
-function TaskItem ({ data, toggleStatus }) {
+function TaskItem ({ data, toggleStatus, deleteTask }) {
   const statusBtnHandler = () => {
     toggleStatus(data.id);
   };
-  console.log('id', data.id);
+  const deleteTaskHandler = () => {
+    deleteTask(data.id);
+  };
   const renderStatusBtn = status => {
     switch (status) {
       case 'ACTIVE':
@@ -44,22 +46,17 @@ function TaskItem ({ data, toggleStatus }) {
   };
 
   const renderAction = status => {
-    switch (status) {
-      case 'ACTIVE':
-        return (
-          <FontAwesomeIcon icon={faTrashAlt} className={style.deleteBtn} />
-        );
-      case 'PAUSED':
-        return (
-          <FontAwesomeIcon icon={faTrashAlt} className={style.deleteBtn} />
-        );
-      case 'FINISHED':
-        return (
-          <FontAwesomeIcon icon={faCheckCircle} className={style.checkCircle} />
-        );
-      default:
-        break;
-    }
+    if (status === 'FINISHED')
+      return (
+        <FontAwesomeIcon icon={faCheckCircle} className={style.checkCircle} />
+      );
+    return (
+      <FontAwesomeIcon
+        icon={faTrashAlt}
+        className={style.deleteBtn}
+        onClick={deleteTaskHandler}
+      />
+    );
   };
 
   return (
